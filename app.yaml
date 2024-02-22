@@ -1,0 +1,6 @@
+runtime: java11 # Ersätt med din runtime
+instance_class: F1
+
+handlers:
+  - url: /.*
+    script: auto
