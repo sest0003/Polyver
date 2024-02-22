@@ -1,10 +1,9 @@
 package com.example.PolyverTest;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,6 +15,11 @@ public class Admin {
     private String username;
     private String password;
     private String role; // 'USER' eller 'ADMIN'
+
+    @OneToMany(mappedBy = "reportedBy")
+    private Set<DamageReport> damageReports;
+
+}
 
 //    public Long getId() {
 //        return id;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+  <link href="/css/admin.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Datefilter-->
+<form action="/filter-reports" method="get">
+  <label for="startDate">Startdatum:</label>
+  <input type="date" id="startDate" name="startDate" required>
+
+  <label for="endDate">Slutdatum:</label>
+  <input type="date" id="endDate" name="endDate" required>
+
+  <button type="submit">Find</button>
+</form>
+
+<!--Report List-->
+<div class="list-container">
+<h2>Damage Reports</h2>
+<ul>
+
+  <div class="headlines">
+    <span>Date</span>
+    <span>Product</span>
+    <span class="size">Size</span>
+    <span>Damage</span>
+  </div>
+
+  <li th:each="report : ${reports}">
+
+    <span th:text="${report.timeStamp}"></span>
+    <span th:text="${report.product}"></span>
+    <span class="size" th:text="${report.size}"></span>
+    <span class="damage" th:text="${report.damage}"></span>
+  </li>
+</ul>
+</div>
+
+</body>
+</html>

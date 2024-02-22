@@ -26,18 +26,28 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        UserDetails regularUser = User.builder()
+        UserDetails defaultUser = User.builder()
                 .username("user")
                 //.password("user")
                 .password(passwordEncoder().encode("user"))
                 .roles("USER")
                 .build();
 
+        UserDetails workstation1 = User.builder()
+                .username("ws1")
+                //.password("user")
+                .password(passwordEncoder().encode("1234"))
+                .roles("USER")
+                .build();
 
+        UserDetails workstation2 = User.builder()
+                .username("ws2")
+                //.password("user")
+                .password(passwordEncoder().encode("2345"))
+                .roles("USER")
+                .build();
 
-
-        System.out.println("Lösenord för användaren 'user': " + regularUser.getPassword());
-        return new InMemoryUserDetailsManager(adminUser, regularUser);
+        return new InMemoryUserDetailsManager(adminUser, defaultUser, workstation1, workstation2);
     }
 
     @Bean
@@ -51,17 +61,13 @@ public class SecurityConfig {
         http
 
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/h2/**").permitAll()
-                        .requestMatchers("/login.css").permitAll()
+                        .requestMatchers("/h2/**", "/images/**", "/css/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/h2/**") // Ignorera CSRF för H2 Console
-                )
-                .headers(headers -> headers
-                        .frameOptions().sameOrigin() // Tillåt ramverk för H2 Console
                 )
                 .formLogin(form -> form
                         .loginPage("/login")

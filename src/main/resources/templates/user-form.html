@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/user.css" rel="stylesheet">
+
+    <title>Title</title>
+
+</head>
+<body>
+
+<!--<h1>Skapa en defekt</h1>-->
+<!--<form action="/user" method="POST" >-->
+<!--  <label for="size">Storlek:</label>-->
+<!--&lt;!&ndash;  <input type="number" id="size" name="size" required><br>&ndash;&gt;-->
+
+<!--  <label for="defect">Defekt:</label>-->
+<!--&lt;!&ndash;  <input type="text" id="defect" name="defect" required><br>&ndash;&gt;-->
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+<!--  <button type="submit">Skapa Defekt</button>-->
+<!--</form>-->
+
+
+<div class="container-form">
+
+    <form class="form" action="/user" method="POST" >
+
+        <div class="input-text" >
+            <h6 class="h6">Product</h6>
+            <select name="product">
+                <option value="Classic Low'24">Classic Low'24</option>
+                <option value="Classic Winter">Classic Winter</option>
+                <option value="Premium Low">Premium Low</option>
+                <option value="Premium High">Premium High</option>
+            </select>
+        </div>
+
+        <div class="input-text">
+            <h6 class="h6" >Size</h6>
+            <input type="number" id="size" name="size" class="size" required>
+        </div>
+
+        <div class="input-text">
+            <h6 class="h6">Defect</h6>
+            <select id="damage" name="damage" required>
+                <option value="Glue issue">Glue issue</option>
+                <option value="Material Defects">Material Defects</option>
+                <option value="Size Inconsistencies">Size Inconsistencies </option>
+                <option value="Incorrect Shaping">Incorrect Shaping</option>
+                <option value="Defective Soles">Defective Soles</option>
+                <option value="Poor Finish">Poor Finish</option>
+                <option value="Surface damage">Surface damage </option>
+                <option value="Incorrect Labels or Markings">Incorrect Labels/Markings</option>
+                <option value="Color Errors">Color Errors</option>
+            </select>
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button class="submit" type="submit">Submit</button>
+
+    </form>
+
+    <img class="bear" src="/images/bear.webp" alt="#">
+
+</div>
+
+<script src="vag/till/din/script.js"></script>
+</body>
+</html>
